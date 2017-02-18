@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <%=title%>
+    </title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+<div class='navbar navbar-inverse'>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="http://www.gushiwen.org/" class="navbar-brand">古诗文网</a>
+        </div>
+        <div>
+            <ul class='navbar-nav nav'>
+                <%
+                categories.forEach(function(category){%>
+                <li>
+                    <a href="/?<%=category.url%>">
+                        <%=category.name%>
+                    </a>
+                </li>
+                <%});
+                %>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container row-md-10">
+    <%if(details){%>
+    <div class="panel  panel-default">
+        <div class="panel-heading text-center">
+            <h3><%=details.title%></h3>
+            <%=details.author%>
+            |
+            <%=details.dynasty%>
+        </div>
+        <div class="panel-body ">
+            <%=details.content%>
+        </div>
+        <div class="panel-footer">
+            分类:
+            <%=details.cate%>
+        </div>
+    </div>
+    <%}else if(lists){ %>
+    <%lists.forEach(function(list){if(c==list.cate){%>
+    <a href="/?<%=list.url%>" target='_blank'>
+        <div class="panel panel-default">
+            <div class="panel-heading ">
+                <%=list.title%>
+                <span class='pull-right'><%=list.author%></span>
+            </div>
+            <div class="panel-body">
+                <%=list.desc%>
+            </div>
+            <div class="panel-footer">
+                分类:
+                <%=list.cate%>
+            </div>
+        </div>
+    </a>
+    <% }})%>
+    <%}%>
+</div>
+</body>
+
+</html>
